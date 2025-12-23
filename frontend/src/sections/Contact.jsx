@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createLead } from "../services/api";
 
 const Contact = () => {
   const PHONE_NUMBER = "917546857119"; // 👈 replace with your WhatsApp number
@@ -19,18 +20,19 @@ const Contact = () => {
     e.preventDefault();
   
     // 1️⃣ Send to backend
-    await fetch("http://localhost:3000/api/leads", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: form.name,
-        phone: form.phone,
-        email: form.email,
-        interest: form.interest,
-        message: form.message,
-        source: "contact",
-      }),
-    });
+   await createLead({
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    name: form.name,
+    phone: form.phone,
+    email: form.email,
+    interest: form.interest,
+    message: form.message,
+    source: "contact",
+  }),
+});
+
   
     // 2️⃣ Open WhatsApp (optional but good)
     const whatsappMessage = encodeURIComponent(

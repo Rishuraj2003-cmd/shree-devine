@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { fetchProperty } from "../services/api";
-import ImageSlider from "../components/ImageSlider";
+// import ImageSlider from "../components/ImageSlider";
 import BookCallModal from "../components/BookCallModal";
-
+import ImageCarousel from "../components/ImageCarousel";
 const PropertyDetails = () => {
   const { id } = useParams();
   const [property, setProperty] = useState(null);
@@ -49,7 +49,7 @@ Please contact me with more details.`
         {/* IMAGE SLIDER */}
         <div className="max-w-6xl mx-auto">
           {property.images && property.images.length > 0 && (
-            <ImageSlider images={property.images} />
+            <ImageCarousel images={property.images} />
           )}
         </div>
 

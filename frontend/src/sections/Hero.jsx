@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Dropdown from "../components/Dropdown";
-import heroBg from "../assets/Download.jpeg";
+import heroBg from "../assets/download.jpeg";
 
 const Hero = () => {
   const navigate = useNavigate();

@@ -6,35 +6,40 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-// DB CONNECT
+/* ---------- DATABASE ---------- */
 mongoose
   .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Atlas Connected"))
-  .catch((err) => console.error("❌ MongoDB Error:", err));
+  .then(() => console.log("✅ MongoDB Connected"))
+  .catch((err) => {
+    console.error("❌ MongoDB Error:", err.message);
+    process.exit(1); // stop app if DB fails
+  });
 
-
-// CORS
+/* ---------- MIDDLEWARE ---------- */
 app.use(
   cors({
-    origin: "http://localhost:5173",
-     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-     allowedHeaders: ["Content-Type", "Authorization"],
-    // credentials: true,
+    origin: [
+      "http://localhost:5173",
+      "https://shree-devine.vercel.app",
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
 app.use(express.json());
 
-// ROUTES
+/* ---------- ROUTES ---------- */
 app.use("/api/properties", require("./routes/propertyRoutes"));
-app.use("/api/leads", require("./routes/lead.routes")); // ✅ NEW
+app.use("/api/leads", require("./routes/lead.routes"));
 
+/* ---------- HEALTH CHECK ---------- */
 app.get("/", (req, res) => {
-  res.send("Backend API is running 🚀");
+  res.status(200).send("Backend API is running 🚀");
 });
 
-const PORT = process.env.PORT || 4000;
+/* ---------- SERVER ---------- */
+const PORT = process.env.PORT; // Render injects this
 
 app.listen(PORT, () => {
-  console.log(`Backend running on port ${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });

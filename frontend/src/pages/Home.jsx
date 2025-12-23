@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
+import AIChatBot from "../components/AIChatBot";
 import Navbar from "../components/Navbar";
 import Hero from "../sections/Hero";
 import FeaturedProperties from "../sections/FeaturedProperties";
@@ -24,6 +24,8 @@ const Home = () => {
       <Hero />
       <FeaturedProperties />
       <About />
+      <AIChatBot />
+
       <Contact />
       <Footer />
     </>

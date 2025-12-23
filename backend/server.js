@@ -29,6 +29,7 @@ app.use(
 app.use(express.json());
 
 /* ---------- ROUTES ---------- */
+app.use("/api/chat", require("./routes/chat.routes"));
 app.use("/api/properties", require("./routes/propertyRoutes"));
 app.use("/api/leads", require("./routes/lead.routes"));
 

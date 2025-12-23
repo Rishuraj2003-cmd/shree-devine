@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-//  baseURL: "http://localhost:3000/api",     // used only for local server
+ baseURL: "http://localhost:3000/api",     // used only for local server
     baseURL: "https://shree-devine-backend.onrender.com/api",
 
 });
